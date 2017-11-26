@@ -20,7 +20,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const results = await fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed');
+    const results = await fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=c80d4ec3595ddc1835ea6ef7e2caf0f9');
     const data = await results.json();
     this.movies = data.results;
     await this.sleep(4000)
