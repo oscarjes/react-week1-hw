@@ -22,7 +22,7 @@ class App extends Component {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async loadData() {
+  async loadNowPlayingData() {
     this.setState({
       loading: true
     });
@@ -37,9 +37,24 @@ class App extends Component {
     this.baseState = this.state;
   }
 
+  async loadTopRatedData() {
+    this.setState({
+      loading: true
+    });
+    const results = await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=c80d4ec3595ddc1835ea6ef7e2caf0f9');
+    const data = await results.json();
+    await this.sleep(2000);
+    const movieResults = data.results;
+    this.setState({
+      movies: movieResults,
+      loading: false
+    });
+    this.baseState = this.state;
+  }
+
   componentDidMount() {
       try {
-        this.loadData();
+        this.loadNowPlayingData();
       }
 
       catch(e) {
@@ -63,12 +78,14 @@ class App extends Component {
     this.setState({
       nowPlaying: true
     });
+    this.loadNowPlayingData();
   }
 
   showTopRated() {
     this.setState({
       nowPlaying: false
     });
+    this.loadTopRatedData();
   }
 
 
@@ -87,7 +104,12 @@ class App extends Component {
       refresh = <Button isColor='info' isLoading>isLoading={true}</Button>
     }
     else {
-      refresh = <Button isColor='info' onClick={ this.loadData.bind(this) }>Refresh List</Button>
+      if(this.state.nowPlaying) {
+        refresh = <Button isColor='info' onClick={ this.loadNowPlayingData.bind(this) }>Refresh List</Button>
+      }
+      else {
+        refresh = <Button isColor='info' onClick={ this.loadTopRatedData.bind(this) }>Refresh List</Button>
+      }
     }
 
     let tabs;

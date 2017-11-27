@@ -18,7 +18,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Toggle between **Now Playing** and **Top Rated** movies.
+- [x] Toggle between **Now Playing** and **Top Rated** movies.
 - [ ] Sort Movies by rating, popularity, release date.
 - [ ] Animations on open/close details.
 - [ ] Infinite Scrolling.
