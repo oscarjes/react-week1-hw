@@ -1,6 +1,6 @@
 .MovieCard-Card {
   max-width: 300px;
   margin-top: 25px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 25px;
+  margin-right: 25px;
 }

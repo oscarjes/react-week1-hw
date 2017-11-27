@@ -43,7 +43,7 @@ export default class MovieCard extends Component {
     }
 
     return <Container>
-      <Card className="MovieCard-Card">
+      <Card isPulled='left' className="MovieCard-Card">
         <CardHeader>
           <CardHeaderTitle>
            {this.props.movie.title}
