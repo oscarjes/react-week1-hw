@@ -7,10 +7,7 @@
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+  margin-top: 25px;
 }
 
 .App-title {
@@ -37,4 +34,17 @@
 
 .App-Tabs {
   margin-top: 25px;
+}
+
+.App-Label{
+  margin-top: 25px;
+}
+
+.App-Select{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.App-Button {
+  margin-bottom: 25px;
 }

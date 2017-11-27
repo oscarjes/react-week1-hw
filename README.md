@@ -19,7 +19,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [x] Toggle between **Now Playing** and **Top Rated** movies.
-- [ ] Sort Movies by rating, popularity, release date.
+- [x] Sort Movies by rating, popularity, release date.
 - [ ] Animations on open/close details.
 - [ ] Infinite Scrolling.
 - [ ] Movie Poster Lightbox on click
@@ -27,17 +27,11 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
-
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-## Notes
-
-Describe any challenges encountered while building the app.
+<img src='./watchme.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## License
 
