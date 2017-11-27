@@ -14,6 +14,7 @@ class App extends Component {
       movies: [],
       loading: true,
     }
+    this.baseState = this.state
   }
 
   sleep(ms) {
@@ -30,12 +31,24 @@ class App extends Component {
         movies: this.movies,
         loading: false
       });
+      this.baseState = this.state;
     }
 
     catch(e) {
       alert('there was an error');
       console.log('error': e); 
     }
+  }
+
+  filterList(e) {
+    let updatedList = this.baseState.movies;
+    updatedList = updatedList.filter(function(movie){
+      return movie.title.toLowerCase().search(
+        e.target.value.toLowerCase()) !== -1;
+    });
+    this.setState({
+      movies: updatedList
+    });
   }
 
   render() {
@@ -48,7 +61,6 @@ class App extends Component {
       content = <MovieList movies={this.state.movies}/>
     }
 
-
     return (
       <Container>
         <div className="App">
@@ -59,7 +71,7 @@ class App extends Component {
           <Container>
             <Field className="App-Searchbar">
               <Control>
-                  <Input type="text" placeholder='Search...' />
+                  <Input type="text" placeholder='Search...' onChange={this.filterList.bind(this)}/>
               </Control>
             </Field>
             { content }
