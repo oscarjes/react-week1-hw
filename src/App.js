@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./wm_logo.svg";
 import "./App.css";
-import { Container, Field, Control, Input, Button } from "bloomer";
+import { Container, Field, Control, Input, Button, Tab, Tabs, TabLink, TabList, Icon } from "bloomer";
 import 'font-awesome/css/font-awesome.min.css';
 import "bulma/css/bulma.css";
 import MovieList from "./MovieList";
@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       movies: [],
       loading: true,
+      nowPlaying: true
     }
     this.baseState = this.state
   }
@@ -36,7 +37,7 @@ class App extends Component {
     this.baseState = this.state;
   }
 
-  async componentDidMount() {
+  componentDidMount() {
       try {
         this.loadData();
       }
@@ -58,6 +59,19 @@ class App extends Component {
     });
   }
 
+  showNowPlaying() {
+    this.setState({
+      nowPlaying: true
+    });
+  }
+
+  showTopRated() {
+    this.setState({
+      nowPlaying: false
+    });
+  }
+
+
   render() {
 
     let content;
@@ -76,6 +90,48 @@ class App extends Component {
       refresh = <Button isColor='info' onClick={ this.loadData.bind(this) }>Refresh List</Button>
     }
 
+    let tabs;
+    if(this.state.nowPlaying) {
+      tabs = <div>
+        <Tabs className='App-Tabs' isAlign='centered' isToggle='true'>
+          <TabList>
+            <Tab isActive>
+                <TabLink onClick={this.showNowPlaying.bind(this)}>
+                    <Icon isSize='small'><span className='fa fa-video-camera' aria-hidden='true' /></Icon>
+                    <span>Now Playing</span>
+                </TabLink>
+            </Tab>
+            <Tab>
+              <TabLink onClick={this.showTopRated.bind(this)}>
+                  <Icon isSize='small'><span className='fa fa-trophy' aria-hidden='true' /></Icon>
+                  <span>Top Rated</span>
+              </TabLink>
+            </Tab>
+          </TabList>
+        </Tabs>
+      </div>
+    }
+    else {
+      tabs = <div>
+      <Tabs className='App-Tabs' isAlign='centered' isToggle='true'>
+        <TabList>
+          <Tab>
+              <TabLink onClick={this.showNowPlaying.bind(this)}>
+                  <Icon isSize='small'><span className='fa fa-video-camera' aria-hidden='true' /></Icon>
+                  <span>Now Playing</span>
+              </TabLink>
+          </Tab>
+          <Tab isActive>
+            <TabLink onClick={this.showTopRated.bind(this)}>
+                <Icon isSize='small'><span className='fa fa-trophy' aria-hidden='true' /></Icon>
+                <span>Top Rated</span>
+            </TabLink>
+          </Tab>
+        </TabList>
+      </Tabs>
+    </div>
+    }
+
     return (
       <Container>
         <div className="App">
@@ -84,6 +140,7 @@ class App extends Component {
             <h1 className="App-title">Watch Me!</h1>
           </header>
           <Container>
+            { tabs }
             <Field className="App-Searchbar">
               <Control>
                   <Input type="text" placeholder='Search...' onChange={this.filterList.bind(this)}/>
